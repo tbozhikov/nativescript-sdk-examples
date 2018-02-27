@@ -50,7 +50,7 @@
     "prebuild": "npm run tslint",
     "build": "node scripts/build.js",
     "postbuild": "npm run inject && npm run archive",
-    "inject": "mdinject --root=app --docsroot=dist/code-samples --sourceext=\".ts|.css|.xml\" --snippettitles=\"TypeScript|CSS|HTML\"",
+    "inject": "mdinject --root=app --docsroot=dist/cookbook --sourceext=\".ts|.css|.xml\" --snippettitles=\"TypeScript|CSS|XML\"",
     "archive": "node scripts/archive.js"
   }
 }
