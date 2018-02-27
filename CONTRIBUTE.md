@@ -11,40 +11,36 @@
 
 ######article.md
 ```
-Set text in HTML
-<snippet id='button-text-html'/>
+Set text in XML
+<snippet id='button-tap-xml'/>
 
-Set text in code
-<snippet id='button-text-code'/>
+Set text in code-behind file
+<snippet id='button-tap-ts'/>
 ```
- - Add your example source code files, i.e. `.ts`, `.html`, and `.css` files. These files should contain the actual code snippets to be injected in `article.md`. For example:
+ - Add your example source code files, i.e. `.ts`, `.xml`, and `.css` files. These files should contain the actual code snippets to be injected in `article.md`. For example:
 
 ######text.component.html
-```
+```XML
 <StackLayout sdkExampleTitle sdkToggleNavButton>
     <StackLayout  class="example-container">
-        <!-- >> button-text-html -->
-        <Button id="button" text="I am a button"></Button>
-        <!-- << button-text-html -->
+        <!-- >> button-tap-xml -->
+        <Button id="button" text="I am a button" tap="onTap"></Button>
+        <!-- << button-tap-xml -->
     </StackLayout>
 </StackLayout>
 ```
 
 ######text.component.ts
-```
-import { Component } from "@angular/core";
-import { COMMON_DIRECTIVES } from '../../directives';
-import { Button } from "ui/button";
-import { Page } from "ui/page";
+```TypeScript
+import { EventData } from "tns-core-modules/data/observable";
+import { Button } from "tns-core-modules/ui/button";
 
-@Component({
-    selector: 'button-component',
-    directives: [COMMON_DIRECTIVES],
-    templateUrl: 'button/text/text.component.html'
-})
-
-export class ButtonTextComponent {
+// >> button-tap-ts 
+export function onTap(args: EventData) {
+    let myButton = <Button>args.object;
+    console.log(myButton + " was tapped!");
 }
+// << button-tap-ts 
 ```
  - (Optional) Make а screenshot of your example named `image.png` and add it to the example directory. Here is an image with android and ios phone screenshots:
 
@@ -54,18 +50,11 @@ export class ButtonTextComponent {
 
  - Finally, add your example to the main navigation list:
 
-######app/examples-list.component.ts
-```
+######app/main-view-model.ts
+```TypeScript
 var mainMenuLinks = [
-    new Link("ActionBar", "/actionBarExamplesComponent"),
+    new Link("Button", "/button"),
     ...
-];
-```
-######app/app.routes.ts
-```
-export const routes: RouterConfig = [
-    routeEntry({ path: "", component: ExamplesListComponent, data: { title: "NativeScript SDK Examples" } }),
-    routeEntry({ path: "actionBarExamplesComponent", component: ActionBarExamplesComponent, data: { title: "ActionBar" } }),
 ];
 ```
 
@@ -88,13 +77,6 @@ npm run build
 ```
 You can find the build results in the `dist` directory.
 
-## Show Preview
-To see a GitHub Flavored Markdown preview of the article, execute the following command:
-```
-npm run show-preview
-```
-
-Your default browser will open [this](https://github.com/NativeScript/nativescript-sdk-examples-preview/).
 
 This command pushes to github.com using SSH, so you might need [generate a new SSH key and add it to the ssh-agent](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) in case you haven't done so already.
 

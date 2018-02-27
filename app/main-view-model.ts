@@ -1,4 +1,4 @@
-import { Observable } from 'data/observable';
+import { Observable } from "data/observable";
 import { Link } from "./link";
 
 export class HelloWorldModel extends Observable {
@@ -20,11 +20,11 @@ export class HelloWorldModel extends Observable {
     get links(): Array<Link> {
         return this._links;
     }
-    
+
     set links(value: Array<Link>) {
         if (this._links !== value) {
             this._links = value;
-            this.notifyPropertyChange('links', value)
+            this.notifyPropertyChange("links", value);
         }
     }
 }
