@@ -9,10 +9,10 @@ function archive(){
     var cwd = process.cwd();
 
     var distDir = path.join(cwd, "dist");
-    var sourceDir = path.join(distDir, "code-samples");
+    var sourceDir = path.join(distDir, "cookbook");
     var version = process.env.PACKAGE_VERSION || "0.0.0"
     var env = process.env.ENV || "dev";
-    var archiveFile = path.join(distDir, "sdk-code-samples-" + env + "-" + version + ".tar.gz");
+    var archiveFile = path.join(distDir, "sdk-cookbook-" + env + "-" + version + ".tar.gz");
     rimraf.sync(archiveFile);
     
     var read = targz().createReadStream(sourceDir);

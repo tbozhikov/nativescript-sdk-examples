@@ -11,11 +11,14 @@
 
 ######article.md
 ```
-Set text in XML
-<snippet id='button-tap-xml'/>
-
-Set text in code-behind file
+Set Button tap callback in TypeScript file
 <snippet id='button-tap-ts'/>
+
+Set Button tap callback in JavaScript file
+<snippet id='button-tap-javascript'/>
+
+Set Button in XML
+<snippet id='button-tap-xml'/>
 ```
  - Add your example source code files, i.e. `.ts`, `.xml`, and `.css` files. These files should contain the actual code snippets to be injected in `article.md`. For example:
 
@@ -29,6 +32,20 @@ Set text in code-behind file
     </StackLayout>
 </StackLayout>
 ```
+
+######text.component.js
+```JavaScript
+var EventData = require("tns-core-modules/data/observable").EventData;
+var Button = require("tns-core-modules/ui/button").Button;
+
+// >> button-tap-javascript 
+exports.onTap = function(args) {
+    var myButton = args.object;
+    console.log(myButton + " was tapped!");
+}
+// << button-tap-javascript
+```
+
 
 ######text.component.ts
 ```TypeScript

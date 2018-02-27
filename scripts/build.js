@@ -35,7 +35,7 @@ function build() {
     rimraf.sync(distDir);
     fs.mkdirSync(distDir);
 
-    var articlesDir = path.join(distDir, "code-samples");
+    var articlesDir = path.join(distDir, "cookbook");
     fs.mkdirSync(articlesDir);
 
     var appDir = path.join(cwd, "app");
