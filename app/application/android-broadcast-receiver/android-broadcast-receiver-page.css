@@ -1,0 +1,12 @@
+GridLayout {
+    background-color: orange;
+    border-radius: 20;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+Label {
+    font-size: 18;
+    padding: 15;
+}

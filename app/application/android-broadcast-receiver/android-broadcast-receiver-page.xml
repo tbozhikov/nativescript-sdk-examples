@@ -1,0 +1,15 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" navigatedTo="onNavigatedTo">
+	<Page.actionBar>
+		<ActionBar title="{{ actionBarTitle }}" icon="" class="action-bar">
+		</ActionBar>
+	</Page.actionBar>
+	<GridLayout class="m-20" >
+		<GridLayout rows="*, *" columns="*" visibility="{{ isAndroid ? 'visible' : 'collapsed' }}">
+			<Label row="0" text="Using Android Broadcast Receiver to check the battery life" textWrap="true"></Label>
+			<Label row="1" text="{{ 'Battery Life: ' + batteryLife + '%' }}" textWrap="true"></Label>
+		</GridLayout>
+		<GridLayout rows="*" columns="*" visibility="{{ !isAndroid ? 'visible' : 'collapsed' }}" backgroundColor="blue">
+			<Label text="Android Specific Example" textWrap="true" />
+		</GridLayout>
+	</GridLayout>
+</Page>
