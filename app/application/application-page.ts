@@ -1,9 +1,9 @@
 import { EventData } from "data/observable";
 import { Page } from "ui/page";
-import { ListViewLinksdModel } from "./main-view-model";
+// import { ListViewLinksdModel } from "./main-view-model";
 
 export function navigatingTo(args: EventData) {
 
     let page = <Page>args.object;
-    page.bindingContext = new ListViewLinksdModel();
+    // page.bindingContext = new ListViewLinksdModel();
 }

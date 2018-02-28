@@ -1,7 +1,9 @@
-import { Observable } from "data/observable";
+import { Observable } from "tns-core-modules/data/observable";
+import { topmost } from "tns-core-modules/ui/frame";
 import { Link } from "./link";
+import { ItemEventData } from "tns-core-modules/ui/list-view";
 
-export class HelloWorldModel extends Observable {
+export class ListViewLinksdModel extends Observable {
 
     private _links: Array<Link>;
 
@@ -26,6 +28,15 @@ export class HelloWorldModel extends Observable {
             this._links = value;
             this.notifyPropertyChange("links", value);
         }
+    }
+
+    onItemTap(args: ItemEventData) {
+        const link = this.links[args.index];
+        const navigationModule = "/" + link.title.toLowerCase() + "/" + (link.title.toLowerCase() + "-page");
+
+        topmost().navigate({
+            moduleName: navigationModule
+        });
     }
 }
 
