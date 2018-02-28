@@ -1,6 +1,6 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
     <Page.actionBar>
-        <ActionBar title="NativeScript Core Cookbook" icon="" class="action-bar">
+        <ActionBar title="Cookbook" icon="" class="action-bar">
         </ActionBar>
     </Page.actionBar>
 
