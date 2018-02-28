@@ -6,10 +6,10 @@ import { ListViewLinksdModel } from "../links-view-model";
 import { Link } from "../link";
 
 let vm: Observable;
+
+// Add internal links here
 const navigationLinks: Array<Link> = [
-    new Link("Check Platform", "/check-platform"),
-    new Link("Application Events", "/application-events"),
-    new Link("Android Broadcast Receiver", "/android-broadcast-receiver")
+    new Link("Sub Folder", "/sub-folder"),
 ];
 
 export function onNavigatingTo(args: EventData) {
@@ -30,8 +30,6 @@ export function onNavigatedTo(args) {
 
         // tslint:disable:max-line-length
         const navigationModule = vm.get("rootFolder") + linkItem.link.toLowerCase() + (linkItem.link.toLowerCase() + "-page"); // e.g. "/application/check-platform/check-platform-page"
-
-        console.log("[navigationModule]: " + navigationModule);
 
         topmost().navigate({
             moduleName: navigationModule,

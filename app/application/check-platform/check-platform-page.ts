@@ -42,14 +42,14 @@ export function onGridLoaded(args: EventData) {
 }
 
 export function onNavigatingTo(args) {
-    let page = <Page>args.object;
+    const page = <Page>args.object;
     page.actionBar.title = "";
 }
 
 export function onNavigatedTo(args) {
-    let page = <Page>args.object;
+    const page = <Page>args.object;
 
-    let vm = new Observable();
+    const vm = new Observable();
     vm.set("actionBarTitle", args.context.actionBarTitle);
 
     page.bindingContext = vm;
