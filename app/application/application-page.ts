@@ -7,7 +7,8 @@ import { Link } from "../link";
 
 let vm: Observable;
 const navigationLinks: Array<Link> = [
-    new Link("Check Platform", "/check-platform")
+    new Link("Check Platform", "/check-platform"),
+    new Link("Application Events", "/application-events"),
 ];
 
 export function onNavigatingTo(args: EventData) {

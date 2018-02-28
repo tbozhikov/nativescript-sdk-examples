@@ -1,0 +1,9 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" navigatedTo="onNavigatedTo">
+	<Page.actionBar>
+		<ActionBar title="{{ actionBarTitle }}" icon="" class="action-bar">
+		</ActionBar>
+	</Page.actionBar>
+	<GridLayout loaded="onGridLoaded" class="m-20">
+        <TextView text="Refer to the code-behind files for Application Events snippets" textWrap="true" editable="false"/>
+    </GridLayout>
+</Page>
