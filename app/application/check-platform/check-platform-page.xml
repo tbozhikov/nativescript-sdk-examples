@@ -1,0 +1,5 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="onLoaded" navigatedTo="onNavigatedTo">
+    <GridLayout rows="*" columns="*" loaded="onGridLoaded">
+        <Label id="lbl" textWrap="true" />
+    </GridLayout>
+</Page>
