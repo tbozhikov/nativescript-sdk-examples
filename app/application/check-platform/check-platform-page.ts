@@ -10,32 +10,31 @@ import { Page } from "tns-core-modules/ui/page";
 export function onGridLoaded(args: EventData) {
     const grid = <GridLayout>args.object;
     const lbl = <Label>grid.getViewById("lbl");
+    const iconLabel = <Label>grid.getViewById("iconLabel");
+
+    iconLabel.className = "fa";
+    iconLabel.textAlignment = "center";
+    iconLabel.verticalAlignment = "middle";
+    iconLabel.fontSize = 40;
+
+    lbl.textAlignment = "center";
+    lbl.verticalAlignment = "middle";
+    lbl.fontSize = 24;
 
     // >> application-platform-ts
     if (application.android) {
         console.log("We are running on Android device!");
 
         // >> (hide)
-        grid.backgroundColor = "orange";
-        grid.borderRadius = 20;
-        grid.margin = 20;
-        lbl.color = new Color("white");
-        lbl.fontSize = 26;
+        iconLabel.text = String.fromCharCode(0xff17b);
         lbl.text = "Android Applicaiton";
-        lbl.textAlignment = "center";
-        lbl.verticalAlignment = "middle";
         // << (hide)
     } else if (application.ios) {
         console.log("We are running on iOS device");
 
         // >> (hide)
-        grid.backgroundColor = "blue";
-        grid.borderRadius = 20;
-        grid.margin = 20;
-        lbl.color = new Color("white");
-        lbl.fontSize = 26;
+        iconLabel.text = String.fromCharCode(0xf179);
         lbl.text = "iOS Applicaiton";
-        lbl.textAlignment = "center";
         // << (hide)
     }
     // << application-platform-ts
@@ -43,14 +42,5 @@ export function onGridLoaded(args: EventData) {
 
 export function onNavigatingTo(args) {
     const page = <Page>args.object;
-    page.actionBar.title = "";
-}
-
-export function onNavigatedTo(args) {
-    const page = <Page>args.object;
-
-    const vm = new Observable();
-    vm.set("actionBarTitle", args.context.actionBarTitle);
-
-    page.bindingContext = vm;
+    page.actionBar.title = args.context.title;
 }

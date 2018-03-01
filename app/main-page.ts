@@ -3,16 +3,18 @@ import { Page } from "tns-core-modules/ui/page";
 import { ListViewLinksdModel } from "./links-view-model";
 import { Link } from "./link";
 
-export function navigatingTo(args: EventData) {
+export function onNavigatingTo(args: EventData) {
     let page = <Page>args.object;
 
-    let vm = new ListViewLinksdModel();
-    vm.set("links", navigationLinks);
+    let vm = new ListViewLinksdModel(navigationLinks);
+    vm.set("actionBarTitle", "Cookbook");
 
     page.bindingContext = vm;
 }
 
 export const navigationLinks = [
+    new Link("Application", "/application/application-page"),
+
     new Link("ActionBar", "/action-bar"),
     new Link("ActivityIndicator", "/activity-indicator"),
     new Link("Animations", "/animations"),
@@ -45,7 +47,6 @@ export const navigationLinks = [
     new Link("Location", "/location"),
     new Link("FPS Meter", "/fps-meter"),
     new Link("HTTP Module", "/http"),
-    new Link("Application", "/application"),
     new Link("Application Settings", "/application-settings"),
     new Link("Color", "/color"),
     new Link("Connectivity", "/connectivity"),

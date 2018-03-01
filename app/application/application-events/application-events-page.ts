@@ -20,13 +20,9 @@ let launchListener,
     orientationChangedListener,
     uncaughtErrorListener;
 
-export function onNavigatingTo(args) {
-    const page = <Page>args.object;
-    page.actionBar.title = "";
-}
 
-export function onNavigatedTo(args) {
-    const page = <Page>args.object;
+export function onNavigatingTo(args) {
+    let page = <Page>args.object;
 
     vm = new Observable();
     vm.set("actionBarTitle", args.context.actionBarTitle);
@@ -37,10 +33,11 @@ export function onNavigatedTo(args) {
         let orientationEnum = activity.getResources().getConfiguration().orientation;
         vm.set("orientation", (orientationEnum === 1 ? DeviceOrientation.portrait : DeviceOrientation.landscape));
     } else if (iOSApp) {
-        vm.set("orientation", DeviceOrientation.portrait);
+        vm.set("orientation", "portrait");
     }
 
     page.bindingContext = vm;
+    page.actionBar.title = args.context.title;
 }
 
 export function onGridLoaded(args) {

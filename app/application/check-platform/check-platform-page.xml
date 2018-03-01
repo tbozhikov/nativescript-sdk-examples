@@ -1,9 +1,9 @@
-<Page xmlns="http://www.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" navigatedTo="onNavigatedTo">
+<Page xmlns="http://www.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
     <Page.actionBar>
-		<ActionBar title="{{ actionBarTitle }}" icon="" class="action-bar">
-		</ActionBar>
+		<ActionBar title="" icon="" class="action-bar"/>
 	</Page.actionBar>
-    <GridLayout rows="*" columns="*" loaded="onGridLoaded">
-        <Label id="lbl" textWrap="true" />
+    <GridLayout rows="*, *" columns="*" class="m-20" loaded="onGridLoaded">
+        <Label row="0" id="iconLabel" textWrap="true" />
+        <Label row="1" id="lbl" textWrap="true" />
     </GridLayout>
 </Page>
