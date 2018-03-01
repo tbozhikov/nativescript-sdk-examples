@@ -3,7 +3,8 @@
 		<ActionBar title="{{ actionBarTitle }}" icon="" class="action-bar">
 		</ActionBar>
 	</Page.actionBar>
-	<GridLayout loaded="onGridLoaded" class="m-20">
-        <TextView text="Refer to the code-behind files for Application Events snippets" textWrap="true" editable="false"/>
-    </GridLayout>
+	<GridLayout rows="*, *" columns="*" class="m-20" loaded="onGridLoaded" unloaded="onGridUnloaded">
+		<Label row="0" text="{{ 'Using orientationChanged event \nCurrent orientation: ' + orientation }}" textWrap="true" />
+		<Label row="1" text="{{ info }}" textWrap="true" />
+	</GridLayout>
 </Page>

@@ -1,7 +1,7 @@
 // tslint:disable:max-line-length
 // >> application-events-import
 import {
-    on as applicationOn,
+    on as applicationOn, off as applicationOff, android as androidApp, ios as iOSApp,
     launchEvent, suspendEvent, resumeEvent, exitEvent,
     displayedEvent, lowMemoryEvent, uncaughtErrorEvent, orientationChangedEvent,
     ApplicationEventData, UnhandledErrorEventData, LaunchEventData, OrientationChangedEventData
@@ -9,6 +9,16 @@ import {
 // << application-events-import
 import { EventData, Observable } from "tns-core-modules/data/observable";
 import { Page } from "tns-core-modules/ui/page";
+import { DeviceOrientation } from "ui/enums";
+let vm;
+let launchListener,
+    suspendListener,
+    resumeListener,
+    exitListener,
+    displayedListener,
+    lowMemoryListener,
+    orientationChangedListener,
+    uncaughtErrorListener;
 
 export function onNavigatingTo(args) {
     const page = <Page>args.object;
@@ -18,46 +28,74 @@ export function onNavigatingTo(args) {
 export function onNavigatedTo(args) {
     const page = <Page>args.object;
 
-    const vm = new Observable();
+    vm = new Observable();
     vm.set("actionBarTitle", args.context.actionBarTitle);
+    vm.set("info", "Refer to the code-behind files \nfor Application Events snippets");
+
+    if (androidApp) {
+        let activity = androidApp.foregroundActivity;
+        let orientationEnum = activity.getResources().getConfiguration().orientation;
+        vm.set("orientation", (orientationEnum === 1 ? DeviceOrientation.portrait : DeviceOrientation.landscape));
+    } else if (iOSApp) {
+        vm.set("orientation", DeviceOrientation.portrait);
+    }
 
     page.bindingContext = vm;
 }
 
 export function onGridLoaded(args) {
     // >> application-events
-    applicationOn(launchEvent, (args: LaunchEventData) => {
+    launchListener = applicationOn(launchEvent, (args: LaunchEventData) => {
         // The root view for this Window on iOS or Activity for Android.
         // If not set a new Frame will be created as a root view in order to maintain backwards compatibility.
         console.log("Root View: " + args.root);
         console.log("The appication was launched!");
     });
 
-    applicationOn(suspendEvent, (args: ApplicationEventData) => {
+    suspendListener = applicationOn(suspendEvent, (args: ApplicationEventData) => {
         console.log("The appication was suspended!");
     });
 
-    applicationOn(resumeEvent, (args: ApplicationEventData) => {
+    resumeListener = applicationOn(resumeEvent, (args: ApplicationEventData) => {
         console.log("The appication was resumed!");
     });
 
-    applicationOn(exitEvent, (args: ApplicationEventData) => {
+    exitListener = applicationOn(exitEvent, (args: ApplicationEventData) => {
         console.log("The appication was closed!");
     });
 
-    applicationOn(lowMemoryEvent, (args: ApplicationEventData) => {
+    displayedListener = applicationOn(displayedEvent, (args: ApplicationEventData) => {
+        console.log("NativeScript displayedEvent");
+    });
+
+    lowMemoryListener = applicationOn(lowMemoryEvent, (args: ApplicationEventData) => {
         // the instance that has raidsed the event
         console.log("Instance: " + args.object);
     });
 
-    applicationOn(orientationChangedEvent, (args: OrientationChangedEventData) => {
+    orientationChangedListener = applicationOn(orientationChangedEvent, (args: OrientationChangedEventData) => {
         // orientationChangedEventData.newValue: "portrait" | "landscape" | "unknown"
         console.log("Orientation: " + args.newValue);
+        vm.set("orientation", args.newValue);
     });
 
-    applicationOn(uncaughtErrorEvent, (args: UnhandledErrorEventData) => {
+    uncaughtErrorListener = applicationOn(uncaughtErrorEvent, (args: UnhandledErrorEventData) => {
         // UnhandledErrorEventData.error: NativeScriptError
         console.log("NativeScript Error: " + args.error);
     });
     // << application-events
+}
+
+export function onGridUnloaded() {
+    // >> application-events-off
+    // import { off as applicationOff } from "tns-core-modules/applicaiton";
+    applicationOff(launchEvent, launchListener);
+    applicationOff(resumeEvent, resumeListener);
+    applicationOff(suspendEvent, suspendListener);
+    applicationOff(exitEvent, exitListener);
+    applicationOff(displayedEvent, displayedListener);
+    applicationOff(lowMemoryEvent, lowMemoryListener);
+    applicationOff(orientationChangedEvent, orientationChangedListener);
+    applicationOff(uncaughtErrorEvent, uncaughtErrorListener);
+    // << application-events-off
 }
