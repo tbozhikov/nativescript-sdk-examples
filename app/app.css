@@ -1,1 +1,12 @@
 ﻿@import '~nativescript-theme-core/css/core.light.css';
+
+.fa {
+    font-family: "FontAwesome"
+}
+
+GridLayout {
+    border-radius: 20;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}

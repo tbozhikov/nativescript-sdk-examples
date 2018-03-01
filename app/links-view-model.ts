@@ -2,13 +2,18 @@ import { Observable } from "tns-core-modules/data/observable";
 import { topmost } from "tns-core-modules/ui/frame";
 import { ItemEventData } from "tns-core-modules/ui/list-view";
 import { Link } from "./link";
+import { StackLayout } from "ui/layouts/stack-layout";
 
 export class ListViewLinksdModel extends Observable {
 
     private _links: Array<Link>;
+    private _actionBarTitle: string;
 
-    constructor() {
+    constructor(links: Array<Link>) {
         super();
+
+        this.links = links;
+        this.actionBarTitle = "";
     }
 
     get links(): Array<Link> {
@@ -29,15 +34,24 @@ export class ListViewLinksdModel extends Observable {
         }
     }
 
+    get actionBarTitle(): string {
+        return this._actionBarTitle;
+    }
+
+    set actionBarTitle(value: string) {
+
+        if (this._actionBarTitle !== value) {
+            this._actionBarTitle = value;
+            this.notifyPropertyChange("actionBarTitle", value);
+        }
+    }
+
     onItemTap(args: ItemEventData) {
         const linkItem = this.links[args.index];
 
-        // e.g. "/application/application-page"
-        const navigationModule = linkItem.link.toLowerCase() + (linkItem.link.toLowerCase() + "-page");
-
         topmost().navigate({
-            moduleName: navigationModule,
-            context: { "actionBarTitle": linkItem.title, "rootFolder": linkItem.link }
+            moduleName: linkItem.link,
+            context: { "title": linkItem.title }
         });
     }
 }

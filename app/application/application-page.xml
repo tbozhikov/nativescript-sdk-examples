@@ -1,14 +1,10 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" navigatedTo="onNavigatedTo">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+	  xmlns:myList="components" 
+	  navigatingTo="onNavigatingTo" 
+	  navigatedTo="onNavigatedTo">
     <Page.actionBar>
-		<ActionBar title="{{ actionBarTitle }}" icon="" class="action-bar">
-		</ActionBar>
+		<ActionBar title="{{ actionBarTitle == null ? '' : actionBarTitle }}" icon="" class="action-bar"/>
 	</Page.actionBar>
-	<ListView items="{{ links }}" class="list-group" itemTap="{{ onItemTap }}">
-		<ListView.itemTemplate>
-			<GridLayout class="list-group-item">
-				<Label text="{{ title }}" class="list-group-item-heading">
-				</Label>
-			</GridLayout>
-		</ListView.itemTemplate>
-	</ListView>
+
+	<myList:list/>
 </Page>
