@@ -1,12 +1,12 @@
 import { EventData } from "tns-core-modules/data/observable";
 import { Page } from "tns-core-modules/ui/page";
-import { ListViewLinksdModel } from "./links-view-model";
+import { ListViewLinksModel } from "./links-view-model";
 import { Link } from "./link";
 
 export function onNavigatingTo(args: EventData) {
     let page = <Page>args.object;
 
-    let vm = new ListViewLinksdModel(navigationLinks);
+    let vm = new ListViewLinksModel(navigationLinks);
     vm.set("actionBarTitle", "Cookbook");
 
     page.bindingContext = vm;
@@ -14,8 +14,8 @@ export function onNavigatingTo(args: EventData) {
 
 export const navigationLinks = [
     new Link("Application", "/application/application-page"),
+    new Link("Action Bar", "ui/action-bar/action-bar-page"),
 
-    new Link("ActionBar", "/action-bar"),
     new Link("ActivityIndicator", "/activity-indicator"),
     new Link("Animations", "/animations"),
     new Link("Button", "/button"),
