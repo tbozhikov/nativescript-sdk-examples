@@ -4,7 +4,7 @@ import { ItemEventData } from "tns-core-modules/ui/list-view";
 import { Link } from "./link";
 import { StackLayout } from "ui/layouts/stack-layout";
 
-export class ListViewLinksdModel extends Observable {
+export class ListViewLinksModel extends Observable {
 
     private _links: Array<Link>;
     private _actionBarTitle: string;
